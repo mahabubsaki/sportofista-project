@@ -3,14 +3,14 @@ import { FloatingLettersTextBuilder } from 'react-animated-text-builders'
 
 const AnimatedText = () => {
     return (
-        <div className="text-5xl text-white font-bold">
+        <span className="text-4xl text-white font-bold">
             <FloatingLettersTextBuilder
                 floatingSpeed={500}
                 lettersAppearanceDelay={500}
-                animationMaxMargin={"50px"}
+                animationMaxMargin={"20px"}
                 animationMinMargin={"0px"}
             >SportoFista</FloatingLettersTextBuilder>
-        </div>
+        </span>
     );
 };
 
