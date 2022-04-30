@@ -1,3 +1,4 @@
 .App {
   font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
 }
