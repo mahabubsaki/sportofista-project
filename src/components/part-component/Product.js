@@ -6,7 +6,7 @@ const Product = ({ product, children }) => {
         <div className="bg-slate-400 text-center">
             <h1 className="text-3xl my-3">{name}</h1>
             <img src={img} alt="" />
-            <p>{description}</p>
+            <p className="my-3">{description}</p>
             <p className="font-bold text-xl">Price : {price}</p>
             <p className="font-bold text-xl">Quantity : {quantity}</p>
             <p className="font-bold text-xl">Supplier
