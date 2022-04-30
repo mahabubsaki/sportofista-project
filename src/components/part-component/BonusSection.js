@@ -7,7 +7,7 @@ const BonusSection = () => {
     return (
         <div className="mt-4 w-4/5 mx-auto">
             <div className="my-4">
-                <h1 className="text-3xl text-center my-2">Our Companiens</h1>
+                <h1 className="text-3xl text-center my-2">Our Companies</h1>
                 <div className="flex flex-wrap justify-between">
                     <img src="https://i.ibb.co/jhXthVd/asics-logo-png-transparent.png" alt="" />
                     <img src="https://i.ibb.co/RTkMF6p/29a3a7b92a39a77bff9d6773882f6746.png" alt="" />
@@ -24,8 +24,8 @@ const BonusSection = () => {
                 </div>
                 <div className="flex justify-center items-center mt-3 md:mt-0">
                     <form onSubmit={handleSubscribe}>
-                        <input type="email" name="email" className="p-2 w-3/6 border-2 border-white" />
-                        <button type="submit" className="p-2 ml-3 bg-white">Subsctibe</button>
+                        <input type="email" name="email" className="p-2 w-3/6 border-2 border-white rounded-lg" />
+                        <button type="submit" className="p-2 ml-3 bg-white rounded-lg">Subsctibe</button>
                     </form>
                 </div>
             </div>
