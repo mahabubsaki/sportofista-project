@@ -5,7 +5,7 @@ import { VscSync } from 'react-icons/vsc'
 
 const Feature = () => {
     return (
-        <div className="grid mt-4 w-4/5 mx-auto md:grid-cols-3 grid-cols-1 gap-1">
+        <div className="grid mt-4 w-4/5 mx-auto md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-1">
             <div className="border">
                 <div className="p-3 border border-gray-300 flex justify-center"><MdOutlineAirplanemodeActive className="text-3xl text-blue-700"></MdOutlineAirplanemodeActive></div>
                 <h1 className="text-center font-bold text-xl my-2">Free Shiping</h1>

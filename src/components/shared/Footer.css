@@ -1,0 +1,7 @@
+.footer p:hover,
+.icon:hover {
+  color: gray;
+}
+.footer p {
+  cursor: pointer;
+}
