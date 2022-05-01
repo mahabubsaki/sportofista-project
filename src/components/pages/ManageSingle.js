@@ -69,9 +69,9 @@ const ManageSingle = () => {
                     <button className="p-3 bg-yellow-400 my-3" onClick={handleDeliver}>Delivered</button>
                 </div>
                 <div className="flex justify-center item-center w-1/2">
-                    <div className="text-center">
+                    <div className="text-center w-full">
                         <p className="font-bold">Product Id : {id}</p>
-                        <p>{description}</p>
+                        <p style={{ wordWrap: 'break-word' }}>{description}</p>
                         <div className="flex justify-center">
                             <img src={img} alt="" width="300" />
                         </div>

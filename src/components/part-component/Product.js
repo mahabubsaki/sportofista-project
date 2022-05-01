@@ -11,7 +11,7 @@ const Product = ({ product, route, handleDelete }) => {
             <div className="flex justify-center">
                 <img src={img} alt="" className="w-1/2" />
             </div>
-            <p className="my-3">{description}</p>
+            <p className="my-3" style={{ wordWrap: 'break-word' }}>{description}</p>
             <p className="font-bold text-xl">Price : {price}</p>
             {
                 quantity > 0
