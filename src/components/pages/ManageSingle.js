@@ -71,8 +71,11 @@ const ManageSingle = () => {
                 <div className="flex justify-center item-center w-1/2">
                     <div className="text-center">
                         <p className="font-bold">Product Id : {id}</p>
-                        <img src={img} alt="" />
+                        {/* <p className="text-center border">{description.length > 20 ? description.slice(0, 20) : description}</p> */}
                         <p>{description}</p>
+                        <div className="flex justify-center">
+                            <img src={img} alt="" width="300" />
+                        </div>
                     </div>
                 </div>
             </div>
