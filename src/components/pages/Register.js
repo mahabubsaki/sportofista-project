@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-toastify';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
@@ -20,6 +20,7 @@ const Register = () => {
     const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
     const [sendEmailVerification, sending] = useSendEmailVerification(auth);
+    const navigate = useNavigate()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -37,25 +38,22 @@ const Register = () => {
         await createUserWithEmailAndPassword(email, password)
     }
     useEffect(() => {
-        if (!error?.message) {
-            const verify = async () => {
-                await sendEmailVerification()
-                toast.success('Email Verification sent', toastConfig)
-            }
-            verify()
-        }
-    }, [error])
-    useEffect(() => {
         if (user || user1) {
             if (user?.user?.uid) {
                 async function updateName() {
                     await updateProfile({ displayName: name })
                 }
                 updateName()
+                const verify = async () => {
+                    await sendEmailVerification()
+                    toast.success('Email Verification sent', toastConfig)
+                }
+                verify()
             }
             if (user1) {
 
             }
+            navigate('/')
         }
     }, [user, user1])
     useEffect(() => {
