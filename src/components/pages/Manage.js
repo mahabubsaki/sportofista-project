@@ -1,17 +1,10 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
-import auth from '../../firebase.init';
 import useProducts from '../hooks/useProducts';
 import Product from '../part-component/Product';
-import Loading from '../utilities/Loading';
 
 const Manage = () => {
-    const [user, loading] = useAuthState(auth)
     const [products] = useProducts('manage')
-    if (loading) {
-        <Loading></Loading>
-    }
     return (
         <div style={{ minHeight: '600px' }}>
             <div className="flex justify-between w-3/4 mx-auto mt-2 items-center">

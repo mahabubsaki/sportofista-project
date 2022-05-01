@@ -13,6 +13,15 @@ const ManageSingle = () => {
         getSingleProduct()
     }, [id])
     const { name, img, description, price, quantity, supplier } = product
+    const [currentQuantity, setCurrentQuantity] = useState(quantity)
+    useEffect(() => {
+        setCurrentQuantity(quantity)
+    }, [quantity])
+    const handleDeliver = async () => {
+        setCurrentQuantity(currentQuantity - 1)
+        const newQuantity = currentQuantity - 1
+        const { data } = await axios.put(`http://localhost:5000/product?newQuantity=${newQuantity}&id=${id}`)
+    }
     return (
         <div style={{ minHeight: '600px' }}>
             <div className="flex items-center flex-col-reverse md:flex-row">
@@ -20,13 +29,14 @@ const ManageSingle = () => {
                     <p className="font-bold">Name:{name}</p>
                     <p className="font-bold">Price: ${price}</p>
                     {
-                        quantity > 0
+                        currentQuantity > 0
                             ?
-                            <p className="font-bold text-xl">Quantity : {quantity}</p>
+                            <p className="font-bold text-xl">Quantity : {currentQuantity}</p>
                             :
                             <p className="font-bold text-xl text-red-500">Out of Stock</p>
                     }
-                    <button className="p-3 bg-yellow-400 my-3">Delivered</button>
+                    <p className="font-bold">Supplier: {supplier}</p>
+                    <button className="p-3 bg-yellow-400 my-3" onClick={handleDeliver}>Delivered</button>
                 </div>
                 <div className="flex justify-center item-center w-1/2">
                     <div className="text-center">
