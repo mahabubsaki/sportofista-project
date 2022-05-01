@@ -1,11 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Product = ({ product, route }) => {
+const Product = ({ product, route, handleDelete }) => {
     const navigate = useNavigate()
-    const handle = () => {
-
-    }
     const { name, img, description, price, quantity, supplier, _id } = product
     return (
         <div className="bg-slate-400 text-center p-2 rounded-lg flex flex-col">
@@ -26,7 +23,7 @@ const Product = ({ product, route }) => {
             <p className="font-bold text-xl">Supplier : {supplier}</p>
             {route === "Manage" && <div className="w-1/2 mx-auto h-full flex justify-end flex-col">
                 <button className="px-3 py-2 bg-blue-500" onClick={() => navigate(_id)}>Update</button><br />
-                <button className="px-3 py-2 bg-red-500 mt-2" onClick={handle}>Delete</button>
+                <button className="px-3 py-2 bg-red-500 mt-2" onClick={() => handleDelete(_id)}>Delete</button>
             </div>}
         </div>
     );

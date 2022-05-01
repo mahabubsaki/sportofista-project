@@ -10,6 +10,6 @@ const useProducts = (location) => {
         }
         getProducts()
     }, [location])
-    return [products]
+    return [products, setProducts]
 }
 export default useProducts
