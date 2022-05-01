@@ -1,8 +1,18 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ManageSingle = () => {
+    const toastConfig = {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    }
     const { id } = useParams()
     const [product, setProduct] = useState({})
     useEffect(() => {
@@ -20,7 +30,10 @@ const ManageSingle = () => {
     const handleDeliver = async () => {
         setCurrentQuantity(currentQuantity - 1)
         const newQuantity = currentQuantity - 1
-        const { data } = await axios.put(`http://localhost:5000/product?newQuantity=${newQuantity}&id=${id}`)
+        const { data } = await axios.put(`http://localhost:5000/updateproduct?newQuantity=${newQuantity}&id=${id}`)
+        if (data?.acknowledged) {
+            toast.success('Delivered Successfully', toastConfig)
+        }
     }
     return (
         <div style={{ minHeight: '600px' }}>
