@@ -35,19 +35,19 @@ const ManageSingle = () => {
             e.target.reset()
             return
         }
-        setCurrentQuantity(parseInt(currentQuantity) + parseInt(inpuQuantity))
         const newQuantity = parseInt(currentQuantity) + parseInt(inpuQuantity)
         const { data } = await axios.put(`http://localhost:5000/updateproduct?newQuantity=${newQuantity}&id=${id}`)
         if (data?.acknowledged) {
+            setCurrentQuantity(newQuantity)
             toast.success('Stocked Successfully', toastConfig)
         }
         e.target.reset()
     }
     const handleDeliver = async () => {
-        setCurrentQuantity(currentQuantity - 1)
         const newQuantity = currentQuantity - 1
         const { data } = await axios.put(`http://localhost:5000/updateproduct?newQuantity=${newQuantity}&id=${id}`)
         if (data?.acknowledged) {
+            setCurrentQuantity(newQuantity)
             toast.success('Delivered Successfully', toastConfig)
         }
     }
