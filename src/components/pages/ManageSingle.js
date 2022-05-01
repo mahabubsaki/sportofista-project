@@ -27,6 +27,22 @@ const ManageSingle = () => {
     useEffect(() => {
         setCurrentQuantity(quantity)
     }, [quantity])
+    const handleUpdateStock = async (e) => {
+        e.preventDefault()
+        const inpuQuantity = e.target.quantity.value
+        if (parseInt(inpuQuantity) <= 0 || isNaN(parseInt(inpuQuantity))) {
+            toast.error('Invalid Stock Input Given', toastConfig)
+            e.target.reset()
+            return
+        }
+        setCurrentQuantity(parseInt(currentQuantity) + parseInt(inpuQuantity))
+        const newQuantity = parseInt(currentQuantity) + parseInt(inpuQuantity)
+        const { data } = await axios.put(`http://localhost:5000/updateproduct?newQuantity=${newQuantity}&id=${id}`)
+        if (data?.acknowledged) {
+            toast.success('Stocked Successfully', toastConfig)
+        }
+        e.target.reset()
+    }
     const handleDeliver = async () => {
         setCurrentQuantity(currentQuantity - 1)
         const newQuantity = currentQuantity - 1
@@ -63,9 +79,9 @@ const ManageSingle = () => {
                 <div>
                     <h1 className="text-center text-3xl">Wanna Stock This Item?</h1>
                     <div className="flex justify-center">
-                        <form>
-                            <input type="number" className="border-black bg-gray-300 p-3" placeholder='Quantity' />
-                            <button className="p-3 bg-blue-500">Stock</button>
+                        <form onSubmit={handleUpdateStock}>
+                            <input type="number" className="border-black bg-gray-300 p-3" name="quantity" placeholder='Quantity' />
+                            <button className="p-3 bg-blue-500" type="submit">Stock</button>
                         </form>
                     </div>
                 </div>
