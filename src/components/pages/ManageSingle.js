@@ -36,6 +36,7 @@ const ManageSingle = () => {
             return
         }
         const newQuantity = parseInt(currentQuantity) + parseInt(inpuQuantity)
+        console.log(newQuantity);
         const { data } = await axios.put(`http://localhost:5000/updateproduct?newQuantity=${newQuantity}&id=${id}`)
         if (data?.acknowledged) {
             setCurrentQuantity(newQuantity)
