@@ -9,6 +9,7 @@ import { signOut } from 'firebase/auth';
 const Navbar = () => {
     const [user] = useAuthState(auth)
     const handleLogout = () => {
+        localStorage.removeItem('access_token')
         signOut(auth)
     }
     const [navOpen, setNavOpen] = useState(false)
