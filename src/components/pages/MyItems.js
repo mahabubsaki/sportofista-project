@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
-import useProducts from '../hooks/useProducts';
 import Product from '../part-component/Product';
 
 const MyItems = () => {
@@ -16,15 +17,36 @@ const MyItems = () => {
         draggable: true,
         progress: undefined,
     }
+    const navigate = useNavigate()
     const [user] = useAuthState(auth)
     const [myProducts, setMyProducts] = useState([])
     useEffect(() => {
+        const verify = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/check?email=${user.email}`, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                })
+                return response
+            }
+            catch (error) {
+                if (error.response.status === 401 || error.response.status === 403) {
+                    localStorage.removeItem('access_token')
+                    signOut(auth)
+                    navigate('/login')
+                    toast.error('Something went wrong', toastConfig)
+                }
+            }
+        }
         const getMyProducts = async () => {
             const { data } = await axios.get(`http://localhost:5000/myproducts?email=${user.email}`)
             setMyProducts(data)
         }
+        verify()
         getMyProducts()
     }, [user])
+
     const handleDelete = async (id) => {
         const ask = window.confirm('Are you sure you want to delete this product')
         if (ask) {
