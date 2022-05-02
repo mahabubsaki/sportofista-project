@@ -66,7 +66,7 @@ const ManageSingle = () => {
                             <p className="font-bold text-xl text-red-500">Out of Stock</p>
                     }
                     <p className="font-bold">Supplier: {supplier}</p>
-                    <button className="p-3 bg-yellow-400 my-3" onClick={handleDeliver}>Delivered</button>
+                    <button className="p-3 bg-yellow-400 my-3" onClick={handleDeliver} disabled={!currentQuantity > 0}>Delivered</button>
                 </div>
                 <div className="flex justify-center item-center w-1/2">
                     <div className="text-center w-full">

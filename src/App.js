@@ -37,6 +37,9 @@ function App() {
         <Route path='/my-items' element={<RequireAuth>
           <MyItems></MyItems>
         </RequireAuth>}></Route>
+        <Route path='/my-items/:id' element={<RequireAuth>
+          <ManageSingle></ManageSingle>
+        </RequireAuth>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
       </Routes>
       <Footer></Footer>
