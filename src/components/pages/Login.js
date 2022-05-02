@@ -5,6 +5,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWith
 import auth from '../../firebase.init';
 import Loading from '../utilities/Loading';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Login = () => {
     const toastConfig = {
@@ -53,6 +54,22 @@ const Login = () => {
     }, [error, error1])
     useEffect(() => {
         if (user || user1) {
+            if (user) {
+                const getAccessToken = async () => {
+                    const email = user1?.user?.email
+                    const { data } = await axios.post('http://localhost:5000/enter', { email })
+                    // localStorage.setItem('access_token', data.accessToken)
+                }
+                getAccessToken()
+            }
+            if (user1) {
+                const getAccessToken = async () => {
+                    const email = user1?.user?.email
+                    const { data } = await axios.post('http://localhost:5000/enter', { email })
+                    // localStorage.setItem('access_token', data.accessToken)
+                }
+                getAccessToken()
+            }
             navigate(from, { replace: true });
         }
     }, [user, user1])

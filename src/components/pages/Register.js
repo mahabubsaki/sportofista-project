@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../utilities/Loading';
+import axios from 'axios';
 
 const Register = () => {
     const toastConfig = {
@@ -49,9 +50,20 @@ const Register = () => {
                     toast.success('Email Verification sent', toastConfig)
                 }
                 verify()
+                const getAccessToken = async () => {
+                    const email = user1?.user?.email
+                    const { data } = await axios.post('http://localhost:5000/enter', { email })
+                    // localStorage.setItem('access_token', data.accessToken)
+                }
+                getAccessToken()
             }
             if (user1) {
-
+                const getAccessToken = async () => {
+                    const email = user1?.user?.email
+                    const { data } = await axios.post('http://localhost:5000/enter', { email })
+                    // localStorage.setItem('access_token', data.accessToken)
+                }
+                getAccessToken()
             }
             navigate('/')
         }
