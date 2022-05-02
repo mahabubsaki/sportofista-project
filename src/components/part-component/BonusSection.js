@@ -1,8 +1,24 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const BonusSection = () => {
+    const toastConfig = {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    }
     const handleSubscribe = (e) => {
         e.preventDefault();
+        if (!e.target.email.value) {
+            toast.error('Please Enter Your Email', toastConfig);
+            return;
+        }
+        toast.success('Subscribed!', toastConfig)
+        e.target.reset()
     }
     return (
         <div className="mt-4 w-4/5 mx-auto">
