@@ -13,6 +13,7 @@ import Add from './components/pages/Add';
 import MyItems from './components/pages/MyItems';
 import Blogs from './components/pages/Blogs';
 import ManageSingle from './components/pages/ManageSingle';
+import Notfound from './components/pages/Notfound';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <ManageSingle></ManageSingle>
         </RequireAuth>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+        <Route path='*' element={<Notfound></Notfound>}></Route>
       </Routes>
       <Footer></Footer>
     </div >
