@@ -24,7 +24,7 @@ const Add = () => {
         const quantity = e.target.quantity.value
         const supplier = e.target.supplier.value
         const newProduct = { name, img, description, price: parseInt(price), quantity: parseInt(quantity), supplier, email: user.email }
-        const { data } = await axios.post('http://localhost:5000/addproduct', newProduct)
+        const { data } = await axios.post('https://enigmatic-badlands-96738.herokuapp.com/addproduct', newProduct)
         if (data.acknowledged) {
             toast.success('Product added successfully', toastConfig)
         }

@@ -23,7 +23,7 @@ const MyItems = () => {
     useEffect(() => {
         const verify = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/check?email=${user.email}`, {
+                const response = await axios.get(`https://enigmatic-badlands-96738.herokuapp.com/check?email=${user.email}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('access_token')}`
                     }
@@ -40,7 +40,7 @@ const MyItems = () => {
             }
         }
         const getMyProducts = async () => {
-            const { data } = await axios.get(`http://localhost:5000/myproducts?email=${user.email}`)
+            const { data } = await axios.get(`https://enigmatic-badlands-96738.herokuapp.com/myproducts?email=${user.email}`)
             setMyProducts(data)
         }
         verify()
@@ -50,7 +50,7 @@ const MyItems = () => {
     const handleDelete = async (id) => {
         const ask = window.confirm('Are you sure you want to delete this product')
         if (ask) {
-            const { data } = await axios.delete(`http://localhost:5000/deleteproduct?id=${id}`)
+            const { data } = await axios.delete(`https://enigmatic-badlands-96738.herokuapp.com/deleteproduct?id=${id}`)
             if (data.acknowledged) {
                 const updatedProducts = myProducts.filter(product => product._id !== id)
                 setMyProducts(updatedProducts)

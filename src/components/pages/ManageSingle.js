@@ -17,7 +17,7 @@ const ManageSingle = () => {
     const [product, setProduct] = useState({})
     useEffect(() => {
         const getSingleProduct = async () => {
-            const { data } = await axios.get(`http://localhost:5000/product/${id}`)
+            const { data } = await axios.get(`https://enigmatic-badlands-96738.herokuapp.com/product/${id}`)
             setProduct(data)
         }
         getSingleProduct()
@@ -36,8 +36,7 @@ const ManageSingle = () => {
             return
         }
         const newQuantity = parseInt(currentQuantity) + parseInt(inpuQuantity)
-        console.log(newQuantity);
-        const { data } = await axios.put(`http://localhost:5000/updateproduct?newQuantity=${newQuantity}&id=${id}`)
+        const { data } = await axios.put(`https://enigmatic-badlands-96738.herokuapp.com/updateproduct?newQuantity=${newQuantity}&id=${id}`)
         if (data?.acknowledged) {
             setCurrentQuantity(newQuantity)
             toast.success('Stocked Successfully', toastConfig)
@@ -46,7 +45,7 @@ const ManageSingle = () => {
     }
     const handleDeliver = async () => {
         const newQuantity = currentQuantity - 1
-        const { data } = await axios.put(`http://localhost:5000/updateproduct?newQuantity=${newQuantity}&id=${id}`)
+        const { data } = await axios.put(`https://enigmatic-badlands-96738.herokuapp.com/updateproduct?newQuantity=${newQuantity}&id=${id}`)
         if (data?.acknowledged) {
             setCurrentQuantity(newQuantity)
             toast.success('Delivered Successfully', toastConfig)

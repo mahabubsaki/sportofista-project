@@ -20,7 +20,7 @@ const Manage = () => {
     const handleDelete = async (id) => {
         const ask = window.confirm('Are you sure you want to delete this product')
         if (ask) {
-            const { data } = await axios.delete(`http://localhost:5000/deleteproduct?id=${id}`)
+            const { data } = await axios.delete(`https://enigmatic-badlands-96738.herokuapp.com/deleteproduct?id=${id}`)
             if (data.acknowledged) {
                 const updatedProducts = products.filter(product => product._id !== id)
                 setProducts(updatedProducts)

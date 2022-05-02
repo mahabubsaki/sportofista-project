@@ -5,7 +5,7 @@ const useProducts = (location) => {
     const [products, setProducts] = useState([])
     useEffect(() => {
         const getProducts = async () => {
-            const { data } = await axios.get(`http://localhost:5000/products?location=${location}`)
+            const { data } = await axios.get(`https://enigmatic-badlands-96738.herokuapp.com/products?location=${location}`)
             setProducts(data)
         }
         getProducts()
